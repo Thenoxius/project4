@@ -1,9 +1,10 @@
 package schoonheidsspecialist.klantsysteem.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Klant {
+public class Klant implements Serializable {
     private String naam;
     private LocalDate geboorteDatum;
     private String telefoonNummer;

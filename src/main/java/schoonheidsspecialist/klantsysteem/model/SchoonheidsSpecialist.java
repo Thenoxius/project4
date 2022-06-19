@@ -1,10 +1,11 @@
 package schoonheidsspecialist.klantsysteem.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 
-public class SchoonheidsSpecialist {
+public class SchoonheidsSpecialist implements Serializable {
     private String loginNaam;
     private String wachtwoord;
     private ArrayList<Klant> mijnKlanten = new ArrayList<>();

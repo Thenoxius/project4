@@ -1,10 +1,11 @@
 package schoonheidsspecialist.klantsysteem.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Behandeling {
+public class Behandeling implements Serializable {
     private LocalDate behandelDatum;
     private LocalDateTime beginTijd;
     private LocalDateTime eindTijd;

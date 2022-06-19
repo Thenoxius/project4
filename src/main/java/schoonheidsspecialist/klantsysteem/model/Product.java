@@ -1,9 +1,10 @@
 package schoonheidsspecialist.klantsysteem.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Product {
+public class Product implements Serializable {
     private String productNaam;
     private double productPrijs;
     private int aantalBesschikbaar;

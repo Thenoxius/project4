@@ -1,6 +1,8 @@
 package schoonheidsspecialist.klantsysteem.model;
 
-public class FamilieLidVanKlant {
+import java.io.Serializable;
+
+public class FamilieLidVanKlant implements Serializable {
     private String naam;
     private int leeftijd;
     private String titel;
