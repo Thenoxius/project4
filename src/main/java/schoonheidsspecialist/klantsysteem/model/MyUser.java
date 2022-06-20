@@ -11,6 +11,8 @@ public class MyUser implements Principal {
     private String password;
     private static List<MyUser> allUsers = new ArrayList<>();
 
+
+
     public MyUser(String nm, String unm, String rl, String ww) {
         this.name=nm;
         this.username = unm;

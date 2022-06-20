@@ -2,20 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Schoonheidsspecialist Emmy van Vliet</title>
     <link rel="stylesheet" href="styles.css">
     <script src="myscripts.js"></script>
-    <header>Schoonheidsspecialist Emmy van Vliet</header>
-    <img src="../images/winter.jpg" alt="winter-schilderij">
 </head>
 <body>
-<h1>
-    please login here!
-</h1>
-    <form id="loginform">
-        <label for="username">Gebruikersnaam</label><input type="text" name="username" id="username">
-        <label for="password">Wachtwoord</label><input type="password" name="password" id="password">
-        <input type="button" value="login" id="login">
-    </form>
+    <div class="content">
+        <header  class="gridcell">
+            <h1>
+                Welkom bij schoonheidsspecialist <br> Emmy van Vliet
+            </h1>
+        </header>
+        <main class="gridcell">
+            <img id="afbeelding1" src="../images/winter.jpg" alt="winter-schilderij">
+        </main>
+        <section class="gridcell">
+            <form id="loginform">
+                <div class="container">
+                  <br>
+                  <label for="uname"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="username" id="username" required><br>
+              
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="password" id="password" required><br>
+              
+                  <input type="button" value="login" id="login"></button>
+                </div>
+            </form>
+        </section>
+        <aside   class="gridcell"></aside>
+        <nav     class="gridcell"></nav>
+      </div>
 </body>
+<script type="text/javascript">document.querySelector("#login").addEventListener("click", login);</script>
 </html>

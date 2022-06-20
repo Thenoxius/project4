@@ -1,7 +1,7 @@
 package schoonheidsspecialist.klantsysteem.webservices.request;
 
 public class LogonRequest {
-    public String username, password;
+    public String password, username;
     public String getUsername() {
         return username;
     }

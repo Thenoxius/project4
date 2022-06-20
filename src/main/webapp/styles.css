@@ -1,0 +1,53 @@
+body {
+    background-color: blanchedalmond;
+}
+.content {
+    display: grid;
+    grid-template-areas: 
+      "aside aside aside aside head head head head nav nav nav nav"
+      "aside aside aside aside main main main main nav nav nav nav" 
+      "aside aside aside aside main main main main nav nav nav nav"
+      "aside aside aside aside sec sec sec sec nav nav nav nav"
+      "aside aside aside aside sec sec sec sec nav nav nav nav";
+    gap: 0;
+    grid-auto-rows: minmax(100px, auto);
+  }
+  .gridcell {
+    background-color: #fcf5eb9e;
+  }
+h1 {
+    text-align: center;
+}
+header{
+    grid-area: head;
+}
+main{
+    grid-area: main;
+}
+aside{
+    grid-area: aside;
+}
+nav{
+    grid-area: nav;
+}
+section{
+    grid-area: sec;
+}
+footer{
+    grid-area: foot;
+}
+#afbeelding1 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 10px;
+    border-color: rgb(245, 137, 29);
+    border-style: solid;
+    padding: 1px;
+}
+#loginform {
+    margin: auto;
+    text-align: center;
+    font-size: large;
+}

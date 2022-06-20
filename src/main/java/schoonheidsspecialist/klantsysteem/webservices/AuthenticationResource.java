@@ -18,7 +18,7 @@ import java.security.Key;
 import java.util.AbstractMap;
 import java.util.Calendar;
 
-@Path("authenticate")
+@Path("authentication")
 public class AuthenticationResource {
 
     final static public Key key = MacProvider.generateKey();
