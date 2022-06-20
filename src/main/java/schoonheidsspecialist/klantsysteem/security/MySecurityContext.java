@@ -1,6 +1,6 @@
 package schoonheidsspecialist.klantsysteem.security;
-import schoonheidsspecialist.klantsysteem.model.MyUser;
 
+import schoonheidsspecialist.klantsysteem.model.MyUser;
 import javax.ws.rs.core.SecurityContext;
 import java.security.Principal;
 public class MySecurityContext implements SecurityContext {

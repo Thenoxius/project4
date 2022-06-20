@@ -1,4 +1,4 @@
-package schoonheidsspecialist.klantsysteem.model;
+package schoonheidsspecialist.klantsysteem.webservices.request;
 
 public class LogonRequest {
     public String username, password;

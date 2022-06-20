@@ -4,8 +4,8 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
-import schoonheidsspecialist.klantsysteem.model.LogonRequest;
 import schoonheidsspecialist.klantsysteem.model.MyUser;
+import schoonheidsspecialist.klantsysteem.webservices.request.LogonRequest;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;

@@ -16,7 +16,9 @@ public class MyUser implements Principal {
         this.username = unm;
         this.password = ww;
         this.role = rl;
-        if (!allUsers.contains(this)) allUsers.add(this);
+        if (!allUsers.contains(this)) {
+            allUsers.add(this);
+        }
     }
 
     public static String validateLogin(String username, String password) {

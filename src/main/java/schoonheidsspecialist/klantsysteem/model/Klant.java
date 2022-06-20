@@ -90,7 +90,7 @@ public class Klant implements Serializable {
     }
 
     public void koop(Product product, LocalDate aanschafDatum, int aantalStuks){
-        gekochteProducten.add(product);
+        this.gekochteProducten.add(product);
         for (Product aangekocht : gekochteProducten){
             if (aangekocht.equals(product)){
                 aangekocht.setAanschafDatum(aanschafDatum);

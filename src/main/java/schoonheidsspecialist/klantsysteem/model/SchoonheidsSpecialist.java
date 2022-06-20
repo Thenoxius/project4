@@ -3,12 +3,16 @@ package schoonheidsspecialist.klantsysteem.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class SchoonheidsSpecialist implements Serializable {
     private String loginNaam;
     private String wachtwoord;
-    private ArrayList<Klant> mijnKlanten = new ArrayList<>();
+    private List<Klant> mijnKlanten = new ArrayList<Klant>();
 
     private static SchoonheidsSpecialist mijnZaak = new SchoonheidsSpecialist();
 
@@ -29,12 +33,13 @@ public class SchoonheidsSpecialist implements Serializable {
         }
     }
 
-    public ArrayList<Klant> getMijnKlanten() {
+    public List<Klant> getMijnKlanten() {
         return mijnKlanten;
     }
 
     public void addKlant(Klant klant){
         if (!mijnKlanten.contains(klant)){
+
             mijnKlanten.add(klant);
         }
     }
