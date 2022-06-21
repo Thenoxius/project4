@@ -5,13 +5,19 @@ function login() {
         password: formData.get("password")
     }
     fetch("restservices/authentication", {
-        method: "POST", 
+        method: "POST",
         body: JSON.stringify(requestData),
-        headers: { "Content-type": "application/json"}
+        headers: {"Content-type": "application/json"}
     })
-        .then(function (response){
-            if (response.ok) return response.json();
-            else throw "Wrong username/password";
+        .then(function (response) {
+            if (response.ok) {
+                location.replace("calender.html")
+                return response.json();
+            }
+            else {
+                window.alert("Wrong username/password")
+                throw "Wrong username/password";
+            }
         })
         .then(myJson => window.sessionStorage.setItem("myJWT", myJson.JWT))
         .catch(error => console.log(error));
