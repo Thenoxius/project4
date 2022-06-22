@@ -1,199 +1,132 @@
-import * as dayjs from 'dayjs'
-import "./calenderstyles.css";
-const weekday = require("dayjs/plugin/weekday");
-const weekOfYear = require("dayjs/plugin/weekOfYear");
+import moment from "moment";
+class Calendar {
 
-dayjs.extend(weekday);
-dayjs.extend(weekOfYear);
-
-document.getElementById("app").innerHTML = `
-<div class="calendar-month">
-  <section class="calendar-month-header">
-    <div
-      id="selected-month"
-      class="calendar-month-header-selected-month"
-    ></div>
-    <section class="calendar-month-header-selectors">
-      <span id="previous-month-selector"><</span>
-      <span id="present-month-selector">Today</span>
-      <span id="next-month-selector">></span>
-    </section>
-  </section>
-
-  <ol
-    id="days-of-week"
-    class="day-of-week"
-  /></ol>
-
-  <ol
-    id="calendar-days"
-    class="days-grid"
-  >
-  </ol>
-</div>
-`;
-
-const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const TODAY = dayjs().format("YYYY-MM-DD");
-
-const INITIAL_YEAR = dayjs().format("YYYY");
-const INITIAL_MONTH = dayjs().format("M");
-
-let selectedMonth = dayjs(new Date(INITIAL_YEAR, INITIAL_MONTH - 1, 1));
-let currentMonthDays;
-let previousMonthDays;
-let nextMonthDays;
-
-const daysOfWeekElement = document.getElementById("days-of-week");
-
-WEEKDAYS.forEach((weekday) => {
-  const weekDayElement = document.createElement("li");
-  daysOfWeekElement.appendChild(weekDayElement);
-  weekDayElement.innerText = weekday;
-});
-
-createCalendar();
-initMonthSelectors();
-
-function createCalendar(year = INITIAL_YEAR, month = INITIAL_MONTH) {
-  const calendarDaysElement = document.getElementById("calendar-days");
-
-  document.getElementById("selected-month").innerText = dayjs(
-    new Date(year, month - 1)
-  ).format("MMMM YYYY");
-
-  removeAllDayElements(calendarDaysElement);
-
-  currentMonthDays = createDaysForCurrentMonth(
-    year,
-    month,
-    dayjs(`${year}-${month}-01`).daysInMonth()
-  );
-
-  previousMonthDays = createDaysForPreviousMonth(year, month);
-
-  nextMonthDays = createDaysForNextMonth(year, month);
-
-  const days = [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];
-
-  days.forEach((day) => {
-    appendDay(day, calendarDaysElement);
-  });
-}
-
-function appendDay(day, calendarDaysElement) {
-  const dayElement = document.createElement("li");
-  const dayElementClassList = dayElement.classList;
-  dayElementClassList.add("calendar-day");
-  const dayOfMonthElement = document.createElement("span");
-  dayOfMonthElement.innerText = day.dayOfMonth;
-  dayElement.appendChild(dayOfMonthElement);
-  calendarDaysElement.appendChild(dayElement);
-
-  if (!day.isCurrentMonth) {
-    dayElementClassList.add("calendar-day--not-current");
+  constructor () {
+    this.monthDiv = document.querySelector('.cal-month__current')
+    this.headDivs = document.querySelectorAll('.cal-head__day')
+    this.bodyDivs = document.querySelectorAll('.cal-body__day')
+    this.nextDiv = document.querySelector('.cal-month__next')
+    this.prevDiv = document.querySelector('.cal-month__previous')
   }
 
-  if (day.date === TODAY) {
-    dayElementClassList.add("calendar-day--today");
+  init () {
+    moment.locale(window.navigator.userLanguage || window.navigator.language)
+
+    this.month = moment()
+    this.today = this.selected = this.month.clone()
+    this.weekDays = moment.weekdaysShort(true)
+
+    this.headDivs.forEach((day, index) => {
+      day.innerText = this.weekDays[index]
+    })
+
+    this.nextDiv.addEventListener('click', _ => { this.addMonth() })
+    this.prevDiv.addEventListener('click', _ => { this.removeMonth() })
+
+    this.bodyDivs.forEach(day => {
+      day.addEventListener('click', e => {
+        const date = +e.target.innerHTML < 10 ? `0${e.target.innerHTML}` : e.target.innerHTML
+
+        if (e.target.classList.contains('cal-day__month--next')) {
+          this.selected = moment(`${this.month.add(1, 'month').format('YYYY-MM')}-${date}`)
+        } else if (e.target.classList.contains('cal-day__month--previous')) {
+          this.selected = moment(`${this.month.subtract(1, 'month').format('YYYY-MM')}-${date}`)
+        } else {
+          this.selected = moment(`${this.month.format('YYYY-MM')}-${date}`)
+        }
+
+        this.update()
+      })
+    })
+
+    this.update()
+  }
+
+  update () {
+    this.calendarDays = {
+      first: this.month.clone().startOf('month').startOf('week').date(),
+      last: this.month.clone().endOf('month').date()
+    }
+
+    this.monthDays = {
+      lastPrevious: this.month.clone().subtract(1,'months').endOf('month').date(),
+      lastCurrent: this.month.clone().endOf('month').date()
+    }
+
+    this.monthString = this.month.clone().format('MMMM YYYY')
+
+    this.draw()
+  }
+
+  addMonth () {
+    this.month.add(1, 'month')
+
+    this.update()
+  }
+
+  removeMonth () {
+    this.month.subtract(1, 'month')
+
+    this.update()
+  }
+
+  draw () {
+    this.monthDiv.innerText = this.monthString
+
+    let index = 0
+
+    if (this.calendarDays.first > 1) {
+      for (let day = this.calendarDays.first; day <= this.monthDays.lastPrevious; index ++) {
+        this.bodyDivs[index].innerText = day++
+
+        this.cleanCssClasses(false, index)
+
+        this.bodyDivs[index].classList.add('cal-day__month--previous')
+      }
+    }
+
+    let isNextMonth = false
+    for (let day = 1; index <= this.bodyDivs.length - 1; index ++) {
+      if (day > this.monthDays.lastCurrent) {
+        day = 1
+        isNextMonth = true
+      }
+
+      this.cleanCssClasses(true, index)
+
+      if (!isNextMonth) {
+        if (day === this.today.date() && this.today.isSame(this.month, 'day')) {
+          this.bodyDivs[index].classList.add('cal-day__day--today')
+        }
+
+        if (day === this.selected.date() && this.selected.isSame(this.month, 'month')) {
+          this.bodyDivs[index].classList.add('cal-day__day--selected')
+        }
+
+        this.bodyDivs[index].classList.add('cal-day__month--current')
+      } else {
+        this.bodyDivs[index].classList.add('cal-day__month--next')
+      }
+
+      this.bodyDivs[index].innerText = day++
+    }
+  }
+
+  cleanCssClasses (selected, index) {
+    this.bodyDivs[index].classList.contains('cal-day__month--next') &&
+    this.bodyDivs[index].classList.remove('cal-day__month--next')
+    this.bodyDivs[index].classList.contains('cal-day__month--previous') &&
+    this.bodyDivs[index].classList.remove('cal-day__month--previous')
+    this.bodyDivs[index].classList.contains('cal-day__month--current') &&
+    this.bodyDivs[index].classList.remove('cal-day__month--current')
+    this.bodyDivs[index].classList.contains('cal-day__day--today') &&
+    this.bodyDivs[index].classList.remove('cal-day__day--today')
+    if (selected) {
+      this.bodyDivs[index].classList.contains('cal-day__day--selected') &&
+      this.bodyDivs[index].classList.remove('cal-day__day--selected')
+    }
   }
 }
 
-function removeAllDayElements(calendarDaysElement) {
-  let first = calendarDaysElement.firstElementChild;
-
-  while (first) {
-    first.remove();
-    first = calendarDaysElement.firstElementChild;
-  }
-}
-
-function getNumberOfDaysInMonth(year, month) {
-  return dayjs(`${year}-${month}-01`).daysInMonth();
-}
-
-function createDaysForCurrentMonth(year, month) {
-  return [...Array(getNumberOfDaysInMonth(year, month))].map((day, index) => {
-    return {
-      date: dayjs(`${year}-${month}-${index + 1}`).format("YYYY-MM-DD"),
-      dayOfMonth: index + 1,
-      isCurrentMonth: true
-    };
-  });
-}
-
-function createDaysForPreviousMonth(year, month) {
-  const firstDayOfTheMonthWeekday = getWeekday(currentMonthDays[0].date);
-
-  const previousMonth = dayjs(`${year}-${month}-01`).subtract(1, "month");
-
-  // Cover first day of the month being sunday (firstDayOfTheMonthWeekday === 0)
-  const visibleNumberOfDaysFromPreviousMonth = firstDayOfTheMonthWeekday
-    ? firstDayOfTheMonthWeekday - 1
-    : 6;
-
-  const previousMonthLastMondayDayOfMonth = dayjs(currentMonthDays[0].date)
-    .subtract(visibleNumberOfDaysFromPreviousMonth, "day")
-    .date();
-
-  return [...Array(visibleNumberOfDaysFromPreviousMonth)].map((day, index) => {
-    return {
-      date: dayjs(
-        `${previousMonth.year()}-${previousMonth.month() + 1}-${
-          previousMonthLastMondayDayOfMonth + index
-        }`
-      ).format("YYYY-MM-DD"),
-      dayOfMonth: previousMonthLastMondayDayOfMonth + index,
-      isCurrentMonth: false
-    };
-  });
-}
-
-function createDaysForNextMonth(year, month) {
-  const lastDayOfTheMonthWeekday = getWeekday(
-    `${year}-${month}-${currentMonthDays.length}`
-  );
-
-  const nextMonth = dayjs(`${year}-${month}-01`).add(1, "month");
-
-  const visibleNumberOfDaysFromNextMonth = lastDayOfTheMonthWeekday
-    ? 7 - lastDayOfTheMonthWeekday
-    : lastDayOfTheMonthWeekday;
-
-  return [...Array(visibleNumberOfDaysFromNextMonth)].map((day, index) => {
-    return {
-      date: dayjs(
-        `${nextMonth.year()}-${nextMonth.month() + 1}-${index + 1}`
-      ).format("YYYY-MM-DD"),
-      dayOfMonth: index + 1,
-      isCurrentMonth: false
-    };
-  });
-}
-
-function getWeekday(date) {
-  return dayjs(date).weekday();
-}
-
-function initMonthSelectors() {
-  document
-    .getElementById("previous-month-selector")
-    .addEventListener("click", function () {
-      selectedMonth = dayjs(selectedMonth).subtract(1, "month");
-      createCalendar(selectedMonth.format("YYYY"), selectedMonth.format("M"));
-    });
-
-  document
-    .getElementById("present-month-selector")
-    .addEventListener("click", function () {
-      selectedMonth = dayjs(new Date(INITIAL_YEAR, INITIAL_MONTH - 1, 1));
-      createCalendar(selectedMonth.format("YYYY"), selectedMonth.format("M"));
-    });
-
-  document
-    .getElementById("next-month-selector")
-    .addEventListener("click", function () {
-      selectedMonth = dayjs(selectedMonth).add(1, "month");
-      createCalendar(selectedMonth.format("YYYY"), selectedMonth.format("M"));
-    });
-}
+const cal = new Calendar()
+cal.init()

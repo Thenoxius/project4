@@ -1,108 +1,65 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
 	<meta charset="UTF-8">
 	<title>Calendar</title>
-	<link rel="stylesheet" href="calenderstyles.css">
-
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-
+	<link rel="stylesheet" href="calenderstyles2.css">
+	<link rel="stylesheet" href="evo-calendar.orange-coral.min.css">
+	<link rel="stylesheet" href="evo-calendar.min.css">
+	<script src="calender.js"></script>
+	<!--<script>function switchCheck() {
+		if(document.getElementById("myCheckbox").checked === true){
+			evoCalendar({
+				setTheme : 'Orange Coral'
+			})
+		} else {
+			evoCalendar({
+				setTheme : 'Midnight Blue'
+			})
+		}
+	}</script> -->
+	<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+			integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+	></script>
+	<header>
+		<a href="calender.html" class="navbar-iamge" style="margin-top: 5px;">
+			<h1 class="h2logo" style="display: inline; font-family: Calibri, cursive; font-size: 24px;">Emmy van Vliet <br> schoonheidsspecialist</h1>
+		</a>
+		<span style="margin: 25px"></span>
+		<label class="switch">
+			<input type="checkbox" id="myCheckbox" >
+			<span class="slider round"></span>
+		</label>
+	</header>
 </head>
 
 <body>
+<nav>
 
-<div class="container">
+</nav>
+<div class="hero">
 
-	<div class="calendar-container">
 
-		<header>
 
-			<div class="day">18</div>
-			<div class="month">August</div>
-
-		</header>
-
-		<table class="calendar">
-
-			<thead>
-
-			<tr>
-
-				<td>Mon</td>
-				<td>Tue</td>
-				<td>Wed</td>
-				<td>Thu</td>
-				<td>Fri</td>
-				<td>Sat</td>
-				<td>Sun</td>
-
-			</tr>
-
-			</thead>
-
-			<tbody>
-
-			<tr>
-				<td class="prev-month">29</td>
-				<td class="prev-month">30</td>
-				<td class="prev-month">31</td>
-				<td>1</td>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-			</tr>
-
-			<tr>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-				<td>8</td>
-				<td>9</td>
-				<td>10</td>
-				<td>11</td>
-			</tr>
-
-			<tr>
-				<td>12</td>
-				<td>13</td>
-				<td>14</td>
-				<td>15</td>
-				<td>16</td>
-				<td>17</td>
-				<td class="current-day">18</td>
-			</tr>
-
-			<tr>
-				<td>19</td>
-				<td>20</td>
-				<td>21</td>
-				<td>22</td>
-				<td>23</td>
-				<td>24</td>
-				<td>25</td>
-			</tr>
-
-			<tr>
-				<td>26</td>
-				<td>27</td>
-				<td>28</td>
-				<td>29</td>
-				<td>30</td>
-				<td>31</td>
-				<td class="next-month">1</td>
-			</tr>
-
-			</tbody>
-
-		</table>
-
-		<div class="ring-left"></div>
-		<div class="ring-right"></div>
-
-	</div> <!-- end calendar-container -->
-
-</div> <!-- end container -->
+	<div id="calender"></div>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+	<script src="evo-calendar.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#calender').evoCalendar({
+				theme : 'Orange Coral'
+			})
+			$("#myCheckbox").on("click", function(){
+				$('#calendar').evoCalendar('setTheme', 'Midnight Blue');
+			})
+		})
+	</script>
+</div>
 
 </body>
 
