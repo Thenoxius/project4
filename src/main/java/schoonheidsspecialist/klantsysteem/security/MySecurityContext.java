@@ -1,6 +1,10 @@
 package schoonheidsspecialist.klantsysteem.security;
 
 import schoonheidsspecialist.klantsysteem.model.MyUser;
+
+import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.SecurityContext;
 import java.security.Principal;
 public class MySecurityContext implements SecurityContext {
@@ -22,6 +26,10 @@ public class MySecurityContext implements SecurityContext {
         }
         return false;
     }
+    @GET
+    @Path("/calender")
+    @RolesAllowed("admin")
+
     @Override
     public boolean isSecure() {
         return "https".equals(this.scheme);

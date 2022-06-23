@@ -129,3 +129,12 @@ class Calendar {
 
 const cal = new Calendar()
 cal.init()
+
+function klantenbestand() {
+  location.replace("klantbestand.html");
+}
+
+function logout() {
+  window.sessionStorage.setItem("myJWT", null);
+  location.replace("index.html");
+}

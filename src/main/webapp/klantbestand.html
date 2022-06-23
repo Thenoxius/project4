@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schoonheidsspecialist Emmy van Vliet</title>
+    <link rel="stylesheet" href="klantbestand.css">
+    <script>
+        let data = window.sessionStorage.getItem("myJWT");
+        if (data === "null" || data === null){
+            alert("you are not logged in");
+            location.replace("index.html");
+        }
+        function naarCalender() {
+            location.replace("calender.html");
+        }
+    </script>
+    <header>
+        <a class="navbar-iamge" style="margin-top: 5px;">
+            <h1 class="h2logo" style="display: inline; font-family: Calibri; font-size: 24px; color: white">Emmy van Vliet: schoonheidsspecialist</h1>
+        </a>
+        <div class="imagecontainer"><img class="imageNaarAgenda" src="images/calender.png" onclick="naarCalender()"></div>
+        <div class="imagecontainer2"><img class="imagelogout" src="images/logout.png" onclick="logout()"></div>
+    </header>
+</head>
+<body>
+<div class="hero"></div>
+<h1>Hallo!</h1>
+</body>
