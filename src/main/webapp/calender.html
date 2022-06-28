@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="calenderstyles2.css">
 	<link rel="stylesheet" href="evo-calendar.orange-coral.min.css">
 	<link rel="stylesheet" href="evo-calendar.min.css">
+	<link rel="stylesheet" href="evo-calendar.midnight-blue.min.css">
 	<script>
 		let data = window.sessionStorage.getItem("myJWT");
 		if (data === "null" || data === null){
@@ -18,19 +19,16 @@
 	<script src="calender.js"></script>
 
 	<header>
-		<a class="navbar-iamge" style="margin-top: 5px;">
-			<h1 class="h2logo" style="display: inline; font-family: Calibri; font-size: 24px; color: white">Emmy van Vliet: schoonheidsspecialist</h1>
-		</a>
-		<div class="imagecontainer"><img class="imageNaarKlantenBestand" src="images/klantenbestand%20image.png" onclick="klantenbestand()"></div>
-		<div class="imagecontainer2"><img class="imagelogout" src="images/logout.png" onclick="logout()"></div>
 	</header>
 </head>
 
 <body>
-<nav>
+<nav class="navbar"><a class="navbar-image" style="margin-top: 5px;">
+	<div class="logodiv"><h1 class="h2logo" style="display: inline; font-family: Calibri; font-size: 24px; color: white">Emmy van Vliet: schoonheidsspecialist</h1></div>
+	<div class="imagecontainer"><img class="imageNaarKlantenBestand" src="images/klantenbestand%20image.png" onclick="klantenbestand()"></div>
+	<div class="imagecontainer2"><img class="imagelogout" src="images/logout.png" onclick="logout()"></div>
+</a></nav>
 
-</nav>
-<div class="hero">
 
 
 
@@ -42,13 +40,9 @@
 			$('#calender').evoCalendar({
 				theme : 'Orange Coral'
 			})
-			$("#myCheckbox").on("click", function(){
-				$('#calendar').evoCalendar('setTheme', 'Default');
-				console.log("hello there")
-			})
 		})
 	</script>
-</div>
+
 
 </body>
 

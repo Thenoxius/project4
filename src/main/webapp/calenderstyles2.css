@@ -1,20 +1,17 @@
 body{
-    background: wheat;
+    background: #fff6cb;
 }
-header{
+.navbar{
     margin: 0px;
     padding: 65px;
     background: linear-gradient(to top, #f8b7a2, #ff8865, #ff724b, #ff6037);
 }
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-.hero{
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg,#6ac1c5,#bda5ff);
-}
+
 #calender{
     width: 100%;
     height: 87%;
@@ -26,7 +23,7 @@ header{
 
 .imagecontainer {
     width: auto;
-    position: fixed;
+    position: absolute;
     top: 2%;
     right: 70%;
 }
@@ -40,12 +37,12 @@ header{
 }
 
 .imageNaarKlantenBestand:hover{
-    border: 10px solid red;
+    border: 8px solid #ffc107;
 }
 
 .imagecontainer2 {
     width: auto;
-    position: fixed;
+    position: absolute;
     top: 2%;
     right: 8%;
 }
@@ -59,5 +56,5 @@ header{
 }
 
 .imagelogout:hover{
-    border: 10px solid red;
+    border: 8px solid #ffc107;
 }
