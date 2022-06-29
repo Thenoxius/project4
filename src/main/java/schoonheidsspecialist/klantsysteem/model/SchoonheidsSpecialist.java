@@ -12,7 +12,7 @@ import java.util.List;
 public class SchoonheidsSpecialist implements Serializable {
     private String loginNaam;
     private String wachtwoord;
-    private List<Klant> mijnKlanten = new ArrayList<Klant>();
+    private static ArrayList<Klant> mijnKlanten = new ArrayList<Klant>();
 
     private static SchoonheidsSpecialist mijnZaak = new SchoonheidsSpecialist();
 
@@ -33,7 +33,7 @@ public class SchoonheidsSpecialist implements Serializable {
         }
     }
 
-    public List<Klant> getMijnKlanten() {
+    public static ArrayList<Klant> getMijnKlanten() {
         return mijnKlanten;
     }
 

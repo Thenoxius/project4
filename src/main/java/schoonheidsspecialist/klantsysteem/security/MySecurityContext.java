@@ -26,9 +26,6 @@ public class MySecurityContext implements SecurityContext {
         }
         return false;
     }
-    @GET
-    @Path("/calender")
-    @RolesAllowed("admin")
 
     @Override
     public boolean isSecure() {
