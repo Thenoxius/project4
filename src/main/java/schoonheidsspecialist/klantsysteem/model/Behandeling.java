@@ -13,12 +13,11 @@ public class Behandeling implements Serializable {
     private Klant klant;
     private ArrayList<String> opmerkingen;
 
-    public Behandeling(LocalDate behandelDatum, LocalDateTime beginTijd, LocalDateTime eindTijd, Klant klant) {
+    public Behandeling(LocalDate behandelDatum, LocalDateTime beginTijd, LocalDateTime eindTijd) {
         this.behandelDatum = behandelDatum;
         this.beginTijd = beginTijd;
         this.eindTijd = eindTijd;
         this.klant = klant;
-        klant.addBehandeling(this);
     }
 
     public LocalDate getBehandelDatum() {
@@ -56,11 +55,11 @@ public class Behandeling implements Serializable {
     public Klant getKlant() {
         return klant;
     }
-
+/*
     public void setKlant(Klant klant) {
         this.klant = klant;
         klant.addBehandeling(this);
-    }
+    }*/
 
     public void addOpmerking(String opmerking){
         opmerkingen.add(opmerking);

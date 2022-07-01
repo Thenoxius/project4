@@ -43,18 +43,20 @@ public class SchoonheidsSpecialist implements Serializable {
             mijnKlanten.add(klant);
         }
     }
-
+/*
     public double maakEindafrekening(LocalDate begindatum, LocalDate einddatum){
         double totaalkosten = 0;
         for (Klant klant : mijnKlanten){
             totaalkosten += klant.maakRekening(begindatum, einddatum);
         }
         return totaalkosten;
-    }
+    }*/
 
     private SchoonheidsSpecialist(){
-        addKlant(new Klant("Thomas van Rens",(LocalDate.of(1960, 5, 13)), "0681716632", "keizerstraat 10B", "Gouda", "2801NL"));
-        addKlant(new Klant("Simone Abel",(LocalDate.of(1964, 9, 2)), "0610434758", "Steinsedijk 7a", "Haastrecht", "2851SL"));
+        addKlant(new Klant("Thomas van Rens","04/12/1991", "0681716632", "keizerstraat 10B", "Gouda", "2801NL"));
+        addKlant(new Klant("Simone Abel","02/09/1964", "0610434758", "Steinsedijk 7a", "Haastrecht", "2851SL"));
+        addKlant(new Klant("Sanne Vondracek","28/04/1987", "0681765955", "keizerstraat 10B", "Gouda", "2801NL"));
+
     }
 
 }

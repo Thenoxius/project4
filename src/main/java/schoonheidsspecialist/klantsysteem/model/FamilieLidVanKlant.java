@@ -10,7 +10,6 @@ public class FamilieLidVanKlant implements Serializable {
         this.naam = naam;
         this.leeftijd = leeftijd;
         this.titel = titel;
-        assignToKlant(klant);
     }
     public String getNaam() {
         return naam;
@@ -38,8 +37,8 @@ public class FamilieLidVanKlant implements Serializable {
     public String toString() {
         String s = naam + " is de " + titel + " van de klant en is " + leeftijd + " jaar oud";
         return s;
-    }
+    }/*
     public void assignToKlant(Klant klant){
         klant.addFamilieLid(this);
-    }
+    }*/
 }

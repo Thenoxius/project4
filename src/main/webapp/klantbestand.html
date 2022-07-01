@@ -3,19 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Schoonheidsspecialist Emmy van Vliet</title>
-    <link rel="stylesheet" href="klantbestand.css">
+    <link rel="stylesheet" href="styles/klantbestand.css">
     <link rel="script" href="view/klantenbestand.js">
+    <script src="service/mijnKlantenService.js"></script>
+    <script src="view/klantenbestand.js"></script>
     <script>
         let data = window.sessionStorage.getItem("myJWT");
         if (data === "null" || data === null){
             alert("you are not logged in");
-            location.replace("index.html");
-        }
-        function naarCalender() {
-            location.replace("calender.html");
-        }
-        function logout() {
-            window.sessionStorage.setItem("myJWT", null);
             location.replace("index.html");
         }
     </script>
@@ -30,55 +25,56 @@
 <nav class="navbar"><a class="navbar-image" style="margin-top: 5px;">
     <div class="logodiv"><h1 class="h2logo" style="display: inline; font-family: Calibri; font-size: 24px; color: white">Emmy van Vliet: schoonheidsspecialist</h1></div>
     <div class="imagecontainer"><img class="imageNaarAgenda" src="images/calender.png" onclick="naarCalender()"></div>
+    <div class="imagecontainer3"><img class="imageNieuweKlant" src="images/nieuweKlant.jpg" onclick="openForm()"></div>
     <div class="imagecontainer2"><img class="imagelogout" src="images/logout.png" onclick="logout()"></div>
 </a></nav>
 <!--
 ik gebruik daarna een grid om de klantprofielen te tonen, dit wordt in de eind versie dynamisch gevuld met de klant profielen, ik twijfel nog om de afbeelding generiek te houden of niet
 -->
 <div class="wrapper-grid">
+    <!--
     <div class="klant-container">
         <div class="bannerimage"></div>
-        <img src="https://image.shutterstock.com/image-photo/happy-cheerful-young-woman-wearing-260nw-613759379.jpg" alt="profile-image" class="profile-img">
+        <img class="profile-img">
         <h1 class="klantennaam">testklant persoon</h1>
         <button class="klantenbutton" onclick="alert('hallo')">Details</button>
-    </div>
-    <div class="klant-container">
-        <div class="bannerimage"></div>
-        <img src="https://image.shutterstock.com/image-photo/happy-cheerful-young-woman-wearing-260nw-613759379.jpg" alt="profile-image" class="profile-img">
-        <h1 class="klantennaam">testklant persoon</h1>
-        <button class="klantenbutton" onclick="alert('hallo')">Details</button>
-    </div>
-    <div class="klant-container">
-        <div class="bannerimage"></div>
-        <img src="https://image.shutterstock.com/image-photo/happy-cheerful-young-woman-wearing-260nw-613759379.jpg" alt="profile-image" class="profile-img">
-        <h1 class="klantennaam">testklant persoon</h1>
-        <button class="klantenbutton" onclick="alert('hallo')">Details</button>
-    </div>
-    <div class="klant-container">
-        <div class="bannerimage"></div>
-        <img src="https://image.shutterstock.com/image-photo/happy-cheerful-young-woman-wearing-260nw-613759379.jpg" alt="profile-image" class="profile-img">
-        <h1 class="klantennaam">testklant persoon</h1>
-        <button class="klantenbutton" onclick="alert('hallo')">Details</button>
-    </div>
-    <div class="klant-container">
-        <div class="bannerimage"></div>
-        <img src="https://image.shutterstock.com/image-photo/happy-cheerful-young-woman-wearing-260nw-613759379.jpg" alt="profile-image" class="profile-img">
-        <h1 class="klantennaam">testklant persoon</h1>
-        <button class="klantenbutton" onclick="alert('hallo')">Details</button>
-    </div>
-    <div class="klant-container">
-        <div class="bannerimage"></div>
-        <img src="https://image.shutterstock.com/image-photo/happy-cheerful-young-woman-wearing-260nw-613759379.jpg" alt="profile-image" class="profile-img">
-        <h1 class="klantennaam">testklant persoon</h1>
-        <button class="klantenbutton" onclick="alert('hallo')">Details</button>
-    </div>
+    </div> -->
     <!--
     de laatste div in de grid is een klanten object wat gebruikt wordt om een nieuwe klant toe te voegen, weer is dit duidelijk te zien
     -->
+    <!--
     <div class="nieuweklant-container">
         <div class="bannerimage2"></div>
         <button class="nieuweklantenbutton" onclick="alert('nieuwe klant')"><br><br><br><br><br><br><br><br>Nieuw Klant Toevoegen
         </button>
     </div>
+    -->
+</div>
+<div class="form-popup" id="nieuweKlantenForm">
+    <script src="service/formNieuweKlant.js"></script>
+    <form  class="form-container" id="nieuweKlantenDetails">
+        <h1>Nieuwe klant toevoegen</h1>
+
+        <label for="naam"><b>Naam</b></label>
+        <input type="text" id="naam" placeholder="Voer hier de naam in" name="naam" required>
+
+        <label for="geboortedatum"><b>Geboortedatum</b></label>
+        <input type="text" id="Geboortedatum" name="geboortedatum" required/>
+
+        <label for="telefoonnummer"><b>Telefoonnummer</b></label>
+        <input type="text" id="Telefoonnummer" name="telefoonnummer" placeholder="06-12345678" pattern="[06]{2}-[0-9]{8}" required/>
+
+        <label for="straat"><b>Straat en huisnummer</b></label>
+        <input type="text" id="straat" placeholder="Voer hier de straat en het huisnummer in" name="straat" required>
+
+        <label for="woonplaats"><b>Woonplaats</b></label>
+        <input type="text" id="woonplaats" placeholder="Voer hier de woonplaats in" name="woonplaats" required>
+
+        <label for="postcode"><b>postcode</b></label>
+        <input type="text" id="postcode" placeholder="Voer hier de postcode in" name="postcode" required>
+
+        <button type="submit" class="btn" onclick="voegKlantToe()">Toevoegen</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Annuleren</button>
+    </form>
 </div>
 </body>

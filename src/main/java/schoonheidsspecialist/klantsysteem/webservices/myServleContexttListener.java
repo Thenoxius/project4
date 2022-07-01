@@ -29,6 +29,7 @@ public class myServleContexttListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         try {
+            System.out.println("programma slaat op");
             PersistenceManager.saveWorldToAzure();
         } catch (IOException e) {
             e.printStackTrace();

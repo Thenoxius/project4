@@ -6,17 +6,18 @@ import java.util.ArrayList;
 
 public class Klant implements Serializable {
     private String naam;
-    private LocalDate geboorteDatum;
+    private String geboorteDatum;
     private String telefoonNummer;
     private String straat;
     private String woonPlaats;
     private String postcode;
+    /*
     private ArrayList<String> huidkenmerken = new ArrayList<>();;
     private ArrayList<Product> gekochteProducten = new ArrayList<>();;
     private ArrayList<Behandeling> mijnBehandelingen = new ArrayList<>();;
     private ArrayList<FamilieLidVanKlant> familieVan = new ArrayList<>();;
-
-    public Klant(String naam, LocalDate geboorteDatum, String telefoonNummer, String straat, String woonPlaats, String postcode) {
+*/
+    public Klant(String naam, String geboorteDatum, String telefoonNummer, String straat, String woonPlaats, String postcode) {
         this.naam = naam;
         this.geboorteDatum = geboorteDatum;
         this.telefoonNummer = telefoonNummer;
@@ -33,11 +34,11 @@ public class Klant implements Serializable {
         this.naam = naam;
     }
 
-    public LocalDate getGeboorteDatum() {
+    public String getGeboorteDatum() {
         return geboorteDatum;
     }
 
-    public void setGeboorteDatum(LocalDate geboorteDatum) {
+    public void setGeboorteDatum(String geboorteDatum) {
         this.geboorteDatum = geboorteDatum;
     }
 
@@ -72,7 +73,11 @@ public class Klant implements Serializable {
     public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
-
+    public String toString() {
+        String s = "naam: "+ naam + " geboortedatum: " + geboorteDatum + " telefoonnummer: " + telefoonNummer + " woont op adres: " + straat + " " + postcode + " " + woonPlaats + "\n";
+        return s;
+    }
+/*
     public ArrayList<String> getHuidkenmerken() {
         return huidkenmerken;
     }
@@ -152,5 +157,5 @@ public class Klant implements Serializable {
     }
     public ArrayList getGekochteProducten(){
         return gekochteProducten;
-    }
+    }*/
 }
