@@ -3,6 +3,7 @@ package schoonheidsspecialist.klantsysteem.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Klant implements Serializable {
     private String naam;
@@ -25,6 +26,17 @@ public class Klant implements Serializable {
         this.woonPlaats = woonPlaats;
         this.postcode = postcode;
     }
+
+
+    /*public static boolean removeKlant(String naam, String geboorteDatum, String telefoonNummer, String straat, String woonPlaats, String postcode) {
+        Klant klant = new Klant(naam, geboorteDatum, telefoonNummer, straat, woonPlaats, postcode);
+        if (alleKlanten.contains(klant)) {
+            alleKlanten.remove(klant);
+            SchoonheidsSpecialist.getMijnKlanten().remove(klant);
+            return true;
+        }
+        return false;
+    }*/
 
     public String getNaam() {
         return naam;

@@ -12,3 +12,6 @@ function openForm() {
 function closeForm() {
     document.getElementById("nieuweKlantenForm").style.display = "none";
 }
+function closeForm2() {
+    document.getElementById("klantdetails").style.display = "none";
+}

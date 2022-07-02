@@ -50,6 +50,31 @@ ik gebruik daarna een grid om de klantprofielen te tonen, dit wordt in de eind v
     </div>
     -->
 </div>
+<div class="detail-popup" id="klantdetails">
+    <script src="service/formDeleteKlant.js"></script>
+    <form class="form-container2" id="details-van-klant">
+        <label for="naam1"><b>Naam</b></label>
+        <h2 id="naam1"></h2>
+
+        <label for="geboortedatum2"><b>Geboortedatum</b></label>
+            <h2 id="geboortedatum2"></h2>
+
+        <label for="telefoonnummer2"><b>Telefoonnummer</b></label>
+                <h2 id="telefoonnummer2"></h2>
+
+        <label for="straat2"><b>Straat en huisnummer</b></label>
+        <h2 id="straat2"></h2>
+
+        <label for="postcode2"><b>postcode</b></label>
+        <h2 id="postcode2"></h2>
+
+        <label for="woonplaats2"><b>Woonplaats</b></label>
+        <h2 id="woonplaats2"></h2>
+
+        <button type="button" class="btn" onclick="deleteKlant()">Delete</button>
+        <button type="button" class="btn cancel" onclick="closeForm2()">Annuleren</button>
+    </form>
+</div>
 <div class="form-popup" id="nieuweKlantenForm">
     <script src="service/formNieuweKlant.js"></script>
     <form  class="form-container" id="nieuweKlantenDetails">

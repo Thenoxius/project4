@@ -2,6 +2,7 @@ package schoonheidsspecialist.klantsysteem.webservices;
 
 
 import schoonheidsspecialist.klantsysteem.model.MyUser;
+import schoonheidsspecialist.klantsysteem.model.SchoonheidsSpecialist;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -32,6 +33,7 @@ public class myServleContexttListener implements ServletContextListener {
             System.out.println("programma slaat op");
             PersistenceManager.saveWorldToAzure();
         } catch (IOException e) {
+            System.out.println("opslaan lukt niet");
             e.printStackTrace();
         }
     }

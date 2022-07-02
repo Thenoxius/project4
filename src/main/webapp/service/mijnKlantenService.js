@@ -4,18 +4,45 @@ function getKlanten() {
         .then(data => {
             data.forEach((klant) => {
                 const naam = klant.naam;
-                const geboorteDatum = klant.geboorteDatum;
-                const telefoonNummer = klant.telefoonNummer;
-                const straat =  klant.straat;
-                const woonPlaats = klant.woonPlaats;
-                const postcode = klant.postcode;
-                const wrappergrid = document.querySelector("wrapper-grid");
-                addKlantToHtml(naam, geboorteDatum, telefoonNummer, straat, woonPlaats, postcode, "klant-container");
+                addKlantToHtml(naam, "klant-container");
             })
         });
 }
+function getKlantDetails(naam){
+    console.log("detail functie wordt aangeroepen")
+    let fetchnaam = "restservices/klantbestand/"+ naam;
+    fetch((fetchnaam))
+        .then(Response =>  Response.json())
+        .then(data => {
+            const naam = data.naam;
+            const geboorteDatum = data.geboorteDatum;
+            const telefoonNummer = data.telefoonNummer;
+            const straat =  data.straat;
+            const woonPlaats = data.woonPlaats;
+            const postcode = data.postcode;
+            document.getElementById("klantdetails").style.display = "block";
+            const naamdeel = document.querySelector("#naam1");
+            naamdeel.innerHTML = naam;
 
-function addKlantToHtml(naam, geboortedatum, telefoonNummer, straat, woonPlaats, postcode, divclass){
+            const geboortedatumdeel = document.querySelector("#geboortedatum2");
+            geboortedatumdeel.innerHTML = geboorteDatum;
+
+            const telefoonNummerdeel = document.querySelector("#telefoonnummer2");
+            telefoonNummerdeel.innerHTML = telefoonNummer;
+
+            const straatdeel = document.querySelector("#straat2");
+            straatdeel.innerHTML = straat;
+
+            const woonPlaatsdeel = document.querySelector("#woonplaats2");
+            woonPlaatsdeel.innerHTML = woonPlaats;
+
+            const postcodedeel = document.querySelector("#postcode2");
+            postcodedeel.innerHTML = postcode;
+
+        })
+}
+
+function addKlantToHtml(naam, divclass){
     const newDiv = document.createElement("div");
     const newFragment = document.createDocumentFragment();
     const breakElement = document.createElement("br");
@@ -35,11 +62,11 @@ function addKlantToHtml(naam, geboortedatum, telefoonNummer, straat, woonPlaats,
 
     const button = document.createElement("button")
     button.classList.add("klantenbutton")
+    /* ik maak per klant een unieke button id aan met hun naam zodat ik deze persoonlijke onclickfuncties kan geven */
+    let buttonnaam = naam + "-button";
+    button.id = buttonnaam;
     button.innerHTML = "Details"
-    button.onclick = function () {
-        alert("Button is clicked");
-    };
-
+    button.onclick = () => getKlantDetails(naam);
     newDiv.appendChild(newFragment);
     newDiv.appendChild(button);
     newDiv.classList.add(divclass);
@@ -48,4 +75,26 @@ function addKlantToHtml(naam, geboortedatum, telefoonNummer, straat, woonPlaats,
     console.log(incontainer);
     incontainer.appendChild(newDiv);
 }
+
+/*
+function showKlantDetails(naam, geboorteDatum, telefoonNummer, straat, woonPlaats, postcode){
+    document.getElementById("klantdetails").style.display = "block";
+    const naamdeel = document.querySelector("#naam1");
+    naamdeel.innerHTML = naam;
+
+    const geboortedatumdeel = document.querySelector("#geboortedatum2");
+    geboortedatumdeel.innerHTML = geboorteDatum;
+
+    const telefoonNummerdeel = document.querySelector("#telefoonnummer2");
+    telefoonNummerdeel.innerHTML = telefoonNummer;
+
+    const straatdeel = document.querySelector("#straat2");
+    straatdeel.innerHTML = straat;
+
+    const woonPlaatsdeel = document.querySelector("#woonplaats2");
+    woonPlaatsdeel.innerHTML = woonPlaats;
+
+    const postcodedeel = document.querySelector("#postcode2");
+    postcodedeel.innerHTML = postcode;
+}*/
 getKlanten();

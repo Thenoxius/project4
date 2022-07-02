@@ -4,14 +4,14 @@ function voegKlantToe(){
 
     let requestData = {
         naam: formData.get("naam"),
-        geboortedatum: formData.get("geboortedatum"),
-        telefoonnummer: formData.get("telefoonnummer"),
+        geboorteDatum: formData.get("geboortedatum"),
+        telefoonNummer: formData.get("telefoonnummer"),
         straat: formData.get("straat"),
         postcode: formData.get("postcode"),
-        woonplaats: formData.get("woonplaats")
+        woonPlaats: formData.get("woonplaats")
     }
-    console.log(requestData.geboortedatum);
-    fetch("restservices/authentication", {
+    console.log(JSON.stringify(requestData));
+    fetch("restservices/klantbestand", {
         method: "POST",
         body: JSON.stringify(requestData),
         headers: {"Content-type": "application/json"}
