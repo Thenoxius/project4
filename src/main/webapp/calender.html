@@ -31,6 +31,7 @@ dit geeft instinctief aan dat het knoppen zijn die naar andere paginas lijden
 <nav class="navbar"><a class="navbar-image" style="margin-top: 5px;">
 	<div class="logodiv"><h1 class="h2logo" style="display: inline; font-family: Calibri; font-size: 24px; color: white">Emmy van Vliet: schoonheidsspecialist</h1></div>
 	<div class="imagecontainer"><img class="imageNaarKlantenBestand" src="images/klantenbestand%20image.png" onclick="klantenbestand()"></div>
+	<div class="imagecontainer3"><img class="addEventImg" src="images/addEvent.png" onclick=openEventForm()></div>
 	<div class="imagecontainer2"><img class="imagelogout" src="images/logout.png" onclick="logout()"></div>
 </a></nav>
 
@@ -45,6 +46,7 @@ Door middel van Jquerry methods kan ik evenementen toevoegen en verwijderen
 	<div id="calender"></div>
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 	<script src="view/evo-calendar.min.js"></script>
+	<script src="service/calenderEvents.js"></script>
 	<!-- in dit script roep ik de calender aan, in de css heb ik hem gestyled zodat de pagina er mooi en duidelijk uit ziet -->
 	<script>
 		$(document).ready(function() {

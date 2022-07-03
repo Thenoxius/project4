@@ -30,6 +30,9 @@ function deleteKlant(){
     })*/
 }
 function zekerWetenDelete(){
+    const naamvandelete = (document.querySelector("#naam1")).textContent;
+    const text = "weet u zeker dat u " + naamvandelete + " wilt verwijderen?";
+    document.getElementById("deleteNaamHier").innerText = text;
     document.getElementById('id01').style.display='block';
     closeForm2();
 }
