@@ -35,7 +35,17 @@ public class SchoonheidsSpecialist implements Serializable {
         return mijnKlanten;
     }
 
+    public static boolean removeKlant(String name) {
+        for (Klant klant1 : mijnKlanten) {
+            if (klant1.getNaam().equals(name)) {
+                mijnKlanten.remove(klant1);
+                return true;
+            }
 
+
+
+        }return false;
+    }
 
     public String toString() {
         String s =  "mijnzaak heeft de volgende klanten\n";

@@ -28,27 +28,26 @@
     <div class="imagecontainer3"><img class="imageNieuweKlant" src="images/nieuweKlant.jpg" onclick="openForm()"></div>
     <div class="imagecontainer2"><img class="imagelogout" src="images/logout.png" onclick="logout()"></div>
 </a></nav>
+<div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+    <form class="modal-content" >
+        <div class="deletecontainer">
+            <h1>Delete Account</h1>
+            <p>Are you sure you want to delete your account?</p>
+
+            <div class="clearfix">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <button type="button" onclick=deleteKlant() class="deletebtn">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 <!--
 ik gebruik daarna een grid om de klantprofielen te tonen, dit wordt in de eind versie dynamisch gevuld met de klant profielen, ik twijfel nog om de afbeelding generiek te houden of niet
 -->
 <div class="wrapper-grid">
-    <!--
-    <div class="klant-container">
-        <div class="bannerimage"></div>
-        <img class="profile-img">
-        <h1 class="klantennaam">testklant persoon</h1>
-        <button class="klantenbutton" onclick="alert('hallo')">Details</button>
-    </div> -->
-    <!--
-    de laatste div in de grid is een klanten object wat gebruikt wordt om een nieuwe klant toe te voegen, weer is dit duidelijk te zien
-    -->
-    <!--
-    <div class="nieuweklant-container">
-        <div class="bannerimage2"></div>
-        <button class="nieuweklantenbutton" onclick="alert('nieuwe klant')"><br><br><br><br><br><br><br><br>Nieuw Klant Toevoegen
-        </button>
-    </div>
-    -->
+
 </div>
 <div class="detail-popup" id="klantdetails">
     <script src="service/formDeleteKlant.js"></script>
@@ -71,7 +70,7 @@ ik gebruik daarna een grid om de klantprofielen te tonen, dit wordt in de eind v
         <label for="woonplaats2"><b>Woonplaats</b></label>
         <h2 id="woonplaats2"></h2>
 
-        <button type="button" class="btn" onclick="deleteKlant()">Delete</button>
+        <button type="button" class="btn" onclick=zekerWetenDelete()>Delete</button>
         <button type="button" class="btn cancel" onclick="closeForm2()">Annuleren</button>
     </form>
 </div>

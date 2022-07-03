@@ -49,12 +49,13 @@ public class KlantenResource {
         return Response.ok(nieuweKlant).build();
     }
 
-    /*@DELETE
+    @DELETE
     @Path("{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteShopper(@PathParam("name") String name) {
-        return Klant.removeKlant(name)
+        SchoonheidsSpecialist schoonheidsSpecialist = SchoonheidsSpecialist.getSchoonheidsSpecialist();
+        return schoonheidsSpecialist.removeKlant(name)
                 ? Response.ok().build()
                 : Response.status(Response.Status.NOT_FOUND).build();
-    }*/
+    }
 }
