@@ -14,5 +14,8 @@ function addEvent(){
 }
 
 function openEventForm(){
-    window.alert("hier komt een eventform");
+    document.getElementById("nieuweEventForm").style.display = "block";
+}
+function closeForm() {
+    document.getElementById("nieuweEventForm").style.display = "none";
 }
