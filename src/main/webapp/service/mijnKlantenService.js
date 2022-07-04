@@ -54,6 +54,7 @@ function addKlantToHtml(naam, divclass){
     newFragment.appendChild(breakElement);
     const bannerImage = document.createElement("div")
     bannerImage.classList.add("bannerimage")
+    bannerImage.alt = "bannerimg";
     newDiv.appendChild(bannerImage);
 
     const profilepic = document.createElement("img")
