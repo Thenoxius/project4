@@ -16,6 +16,7 @@ public class myServleContexttListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         new MyUser("emmy van vliet", "emmyvanvliet", "admin", "123456");
+
         try {
             PersistenceManager.loadWorldFromAzure();
         } catch (IOException e) {

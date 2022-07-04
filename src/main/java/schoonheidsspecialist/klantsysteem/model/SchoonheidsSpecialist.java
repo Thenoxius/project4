@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public class SchoonheidsSpecialist implements Serializable {
-    private static List<Klant> mijnKlanten = new ArrayList<Klant>();
+    private  List<Klant> mijnKlanten = new ArrayList<Klant>();
 
     private static SchoonheidsSpecialist mijnZaak = new SchoonheidsSpecialist();
 
@@ -25,7 +25,7 @@ public class SchoonheidsSpecialist implements Serializable {
         mijnKlanten.add(new Klant("Simone Abel","02/09/1964", "0610434758", "Steinsedijk 7a", "Haastrecht", "2851SL"));
         mijnKlanten.add(new Klant("Sanne Vondracek","28/04/1987", "0681765955", "keizerstraat 10B", "Gouda", "2801NL"));
     }
-    public static void addKlant(Klant klant){
+    public  void addKlant(Klant klant){
         if (!mijnKlanten.contains(klant)){
 
             mijnKlanten.add(klant);
@@ -35,7 +35,7 @@ public class SchoonheidsSpecialist implements Serializable {
         return mijnKlanten;
     }
 
-    public static boolean removeKlant(String name) {
+    public  boolean removeKlant(String name) {
         for (Klant klant1 : mijnKlanten) {
             if (klant1.getNaam().equals(name)) {
                 mijnKlanten.remove(klant1);
