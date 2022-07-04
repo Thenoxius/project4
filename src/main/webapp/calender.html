@@ -16,6 +16,7 @@
 			location.replace("index.html");
 		}
 	</script>
+	<script src="service/calenderEvents.js"></script>
 	<script src="view/calender.js"></script>
 
 	<header>
@@ -33,25 +34,36 @@ dit geeft instinctief aan dat het knoppen zijn die naar andere paginas lijden
 	<div class="imagecontainer"><img class="imageNaarKlantenBestand" src="images/klantenbestand%20image.png" onclick="klantenbestand()"></div>
 	<div class="imagecontainer3"><img class="addEventImg" src="images/addEvent.png" onclick=openEventForm()></div>
 	<div class="imagecontainer2"><img class="imagelogout" src="images/logout.png" onclick="logout()"></div>
+	<div class="imagecontainer4"><img class="imageevents" src="images/events.png" onclick="openEvents()"></div>
 </a></nav>
+
+<div class="behandelingEvents-popup" id="behandelingen">
+	<table id="behandelingTabel">
+		<tr>
+			<th>Afspraak</th>
+			<th>Tijd en datum</th>
+		</tr>
+	</table>
+	<button type="button" class="btn cancel" onclick="closeEvents()">Annuleren</button>
+</div>
 
 <div class="form-popup" id="nieuweEventForm">
 	<form  class="form-container" id="nieuweEventDetails">
 		<h1>Nieuwe Evenement toevoegen</h1>
 
 		<label for="eventname"><b>Naam van Evenement</b></label>
-		<input type="text" id="eventname" placeholder="Voer hier de naam in" name="naam" required>
+		<input type="text" id="eventname" placeholder="Voer hier de naam in" name="eventname" required>
 
 		<label for="eventDate"><b>Datum van evenement</b></label>
-		<input type="text" id="eventDate" name="geboortedatum" required/>
+		<input type="text" id="eventDate" name="eventDate" required/>
 
 		<label for="eventDescrition"><b>Beschrijving van evenement</b></label>
-		<input type="text" id="eventDescrition" name="telefoonnummer" placeholder="06-12345678" pattern="[06]{2}-[0-9]{8}" required/>
+		<input type="text" id="eventDescrition" name="eventDescrition" placeholder="06-12345678" pattern="[06]{2}-[0-9]{8}" required/>
 
 		<label for="eventType"><b>type behandeling</b></label>
-		<input type="text" id="eventType" placeholder="Voer hier de straat en het huisnummer in" name="straat" required>
+		<input type="text" id="eventType" placeholder="soort behandeling:" name="eventType" required>
 
-		<button type="submit" class="btn" onclick="voegKlantToe()">Toevoegen</button>
+		<button type="submit" class="btn" onclick="addEvent()">Toevoegen</button>
 		<button type="button" class="btn cancel" onclick="closeForm()">Annuleren</button>
 	</form>
 </div>
@@ -64,8 +76,9 @@ Door middel van Jquerry methods kan ik evenementen toevoegen en verwijderen
 -->
 	<div id="calender"></div>
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+	<script src="view/moment.js"></script>
 	<script src="view/evo-calendar.min.js"></script>
-	<script src="service/calenderEvents.js"></script>
+
 	<!-- in dit script roep ik de calender aan, in de css heb ik hem gestyled zodat de pagina er mooi en duidelijk uit ziet -->
 	<script>
 		$(document).ready(function() {

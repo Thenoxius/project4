@@ -1,16 +1,19 @@
 package schoonheidsspecialist.klantsysteem.model;
 
+import org.apache.tomcat.jni.Local;
+
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class SchoonheidsSpecialist implements Serializable {
     private  List<Klant> mijnKlanten = new ArrayList<Klant>();
+
+    private List<Behandeling> mijnBehandelingen = new ArrayList<>();
 
     private static SchoonheidsSpecialist mijnZaak = new SchoonheidsSpecialist();
 
@@ -24,6 +27,10 @@ public class SchoonheidsSpecialist implements Serializable {
         mijnKlanten.add(new Klant("Thomas van Rens","04/12/1991", "0681716632", "keizerstraat 10B", "Gouda", "2801NL"));
         mijnKlanten.add(new Klant("Simone Abel","02/09/1964", "0610434758", "Steinsedijk 7a", "Haastrecht", "2851SL"));
         mijnKlanten.add(new Klant("Sanne Vondracek","28/04/1987", "0681765955", "keizerstraat 10B", "Gouda", "2801NL"));
+        mijnBehandelingen.add(new Behandeling((LocalDate.of(2022, 8, 8)), LocalTime.of( 14, 33, 48), LocalTime.of( 16, 33, 48), getKlant("Thomas van Rens").getNaam(), "massage" ));
+        mijnBehandelingen.add(new Behandeling((LocalDate.of(2022, 8, 9)), LocalTime.of( 14, 33, 48), LocalTime.of( 16, 33, 48), getKlant("Simone Abel").getNaam(), "massage" ));
+        mijnBehandelingen.add(new Behandeling((LocalDate.of(2022, 8, 10)), LocalTime.of( 14, 33, 48), LocalTime.of( 16, 33, 48), getKlant("Sanne Vondracek").getNaam(), "massage" ));
+
     }
     public  void addKlant(Klant klant){
         if (!mijnKlanten.contains(klant)){
@@ -34,6 +41,35 @@ public class SchoonheidsSpecialist implements Serializable {
     public List<Klant> getMijnKlanten() {
         return mijnKlanten;
     }
+
+    public Klant getKlant(String name){
+        for (Klant klant: mijnKlanten){
+            if (klant.getNaam().equals(name)){
+                return klant;
+            }
+        }
+        return null;
+    }
+    public  void addBehandeling(Behandeling behandeling){
+        if (!mijnBehandelingen.contains(behandeling)){
+
+            mijnBehandelingen.add(behandeling);
+        }
+    }
+    public List<Behandeling> getmijnBehandelingen() {
+        return mijnBehandelingen;
+    }
+
+    public List<Behandeling> getmijnBehandelingenGesorteerd() {
+
+        Comparator <Behandeling> dateVerglijker = Comparator.comparing(Behandeling::getBehandelDatum);
+
+        List<Behandeling> alle = getmijnBehandelingen();
+        Collections.sort(alle, dateVerglijker);
+
+        return alle;
+    }
+
 
     public  boolean removeKlant(String name) {
         for (Klant klant1 : mijnKlanten) {

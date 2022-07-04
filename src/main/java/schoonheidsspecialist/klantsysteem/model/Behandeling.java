@@ -3,21 +3,25 @@ package schoonheidsspecialist.klantsysteem.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Behandeling implements Serializable {
     private LocalDate behandelDatum;
-    private LocalDateTime beginTijd;
-    private LocalDateTime eindTijd;
+    private LocalTime beginTijd;
+    private LocalTime eindTijd;
     private double totaalPrijs;
-    private Klant klant;
+    private String klant;
+
+    private String behandelingType;
     private ArrayList<String> opmerkingen;
 
-    public Behandeling(LocalDate behandelDatum, LocalDateTime beginTijd, LocalDateTime eindTijd) {
+    public Behandeling(LocalDate behandelDatum, LocalTime beginTijd, LocalTime eindTijd, String klant, String behandelingType) {
         this.behandelDatum = behandelDatum;
         this.beginTijd = beginTijd;
         this.eindTijd = eindTijd;
         this.klant = klant;
+        this.behandelingType = behandelingType;
     }
 
     public LocalDate getBehandelDatum() {
@@ -28,19 +32,20 @@ public class Behandeling implements Serializable {
         this.behandelDatum = behandelDatum;
     }
 
-    public LocalDateTime getBeginTijd() {
+    public LocalTime getBeginTijd() {
         return beginTijd;
     }
 
-    public void setBeginTijd(LocalDateTime beginTijd) {
+    public void setBeginTijd(LocalTime beginTijd) {
         this.beginTijd = beginTijd;
     }
 
-    public LocalDateTime getEindTijd() {
+    public LocalTime getEindTijd() {
         return eindTijd;
     }
 
-    public void setEindTijd(LocalDateTime eindTijd) {
+
+    public void setEindTijd(LocalTime eindTijd) {
         this.eindTijd = eindTijd;
     }
 
@@ -52,7 +57,7 @@ public class Behandeling implements Serializable {
         this.totaalPrijs = totaalPrijs;
     }
 
-    public Klant getKlant() {
+    public String getKlant() {
         return klant;
     }
 /*
@@ -63,5 +68,10 @@ public class Behandeling implements Serializable {
 
     public void addOpmerking(String opmerking){
         opmerkingen.add(opmerking);
+    }
+
+    public String toString(){
+        String s = getKlant() + " : " + getBehandelDatum();
+        return s;
     }
 }
