@@ -1,5 +1,6 @@
 package schoonheidsspecialist.klantsysteem.webservices;
 import schoonheidsspecialist.klantsysteem.model.Behandeling;
+import schoonheidsspecialist.klantsysteem.model.Klant;
 import schoonheidsspecialist.klantsysteem.model.SchoonheidsSpecialist;
 
 import javax.ws.rs.*;
@@ -7,7 +8,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ws.rs.Path;
 
 @Path("behandelingen")
 public class BehandelingenResource {
@@ -16,10 +16,12 @@ public class BehandelingenResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBehandelingen(){
         SchoonheidsSpecialist schoonheidsSpecialist = SchoonheidsSpecialist.getSchoonheidsSpecialist();
-        ArrayList<Behandeling> behandelingen = new ArrayList<Behandeling>();
+        ArrayList<Behandeling> lijstje = new ArrayList<Behandeling>();
+        System.out.println(schoonheidsSpecialist.getmijnBehandelingen());
         for (Behandeling behandeling : schoonheidsSpecialist.getmijnBehandelingenGesorteerd()){
-            behandelingen.add(behandeling);
+            lijstje.add(behandeling);
         }
-        return Response.ok(behandelingen).build();
+        System.out.println(lijstje);
+        return Response.ok(lijstje).build();
     }
 }

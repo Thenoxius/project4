@@ -3,9 +3,12 @@ function getBehandelingen() {
         .then(Response =>  Response.json())
         .then(data => {
             data.forEach((behandeling) => {
-                const behandelingTitel = behandeling.naam
-                window.alert("we komen hier wel");
-                window.alert(behandelingTitel);
+                const klantNaam = behandeling.klant;
+                const behandelingType = behandeling.behandelingType;
+                const behandelingDatum = behandeling.behandelDatum;
+                const beginTijd = behandeling.beginTijd;
+                const eindTijd = behandeling.eindTijd;
+                addBehandelingToHtml(klantNaam, behandelingType,behandelingDatum, beginTijd, eindTijd)
                 /*addBehandelingToHtml(behandelingTitel, tijden);*/
             })
         });
@@ -38,16 +41,15 @@ function closeEvents() {
 
 
 
-function addBehandelingToHtml(behandelingTitel, tijden){
+function addBehandelingToHtml(klantNaam, behandelingType,behandelingDatum, beginTijd, eindTijd){
     const tabel = document.querySelector("#behandelingTabel")
     const tabelvoorBehandeling = document.createElement("tr")
     const tabelnaam = document.createElement("td")
-    tabelnaam.innerText = behandelingTitel;
+    tabelnaam.innerText = klantNaam + " : " + behandelingType;
     const tabeltijd = document.createElement("td")
-    tabeltijd.innerText = tijden;
+    tabeltijd.innerText = behandelingDatum + " : van " + beginTijd + " tot " + eindTijd;
     tabelvoorBehandeling.appendChild(tabelnaam);
     tabelvoorBehandeling.appendChild(tabeltijd);
     tabel.appendChild(tabelvoorBehandeling);
-
 }
 getBehandelingen();

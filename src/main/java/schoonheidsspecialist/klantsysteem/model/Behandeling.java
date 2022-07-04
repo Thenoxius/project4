@@ -10,11 +10,10 @@ public class Behandeling implements Serializable {
     private LocalDate behandelDatum;
     private LocalTime beginTijd;
     private LocalTime eindTijd;
-    private double totaalPrijs;
     private String klant;
 
     private String behandelingType;
-    private ArrayList<String> opmerkingen;
+
 
     public Behandeling(LocalDate behandelDatum, LocalTime beginTijd, LocalTime eindTijd, String klant, String behandelingType) {
         this.behandelDatum = behandelDatum;
@@ -49,25 +48,19 @@ public class Behandeling implements Serializable {
         this.eindTijd = eindTijd;
     }
 
-    public double getTotaalPrijs() {
-        return totaalPrijs;
-    }
 
-    public void setTotaalPrijs(double totaalPrijs) {
-        this.totaalPrijs = totaalPrijs;
-    }
+
 
     public String getKlant() {
         return klant;
     }
-/*
-    public void setKlant(Klant klant) {
-        this.klant = klant;
-        klant.addBehandeling(this);
-    }*/
 
-    public void addOpmerking(String opmerking){
-        opmerkingen.add(opmerking);
+    public String getBehandelingType() {
+    return behandelingType;
+}
+
+    public void setBehandelingType(String behandelingType) {
+        this.behandelingType = behandelingType;
     }
 
     public String toString(){

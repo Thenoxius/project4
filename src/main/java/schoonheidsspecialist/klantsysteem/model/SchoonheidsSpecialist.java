@@ -27,9 +27,10 @@ public class SchoonheidsSpecialist implements Serializable {
         mijnKlanten.add(new Klant("Thomas van Rens","04/12/1991", "0681716632", "keizerstraat 10B", "Gouda", "2801NL"));
         mijnKlanten.add(new Klant("Simone Abel","02/09/1964", "0610434758", "Steinsedijk 7a", "Haastrecht", "2851SL"));
         mijnKlanten.add(new Klant("Sanne Vondracek","28/04/1987", "0681765955", "keizerstraat 10B", "Gouda", "2801NL"));
-        mijnBehandelingen.add(new Behandeling((LocalDate.of(2022, 8, 8)), LocalTime.of( 14, 33, 48), LocalTime.of( 16, 33, 48), getKlant("Thomas van Rens").getNaam(), "massage" ));
-        mijnBehandelingen.add(new Behandeling((LocalDate.of(2022, 8, 9)), LocalTime.of( 14, 33, 48), LocalTime.of( 16, 33, 48), getKlant("Simone Abel").getNaam(), "massage" ));
-        mijnBehandelingen.add(new Behandeling((LocalDate.of(2022, 8, 10)), LocalTime.of( 14, 33, 48), LocalTime.of( 16, 33, 48), getKlant("Sanne Vondracek").getNaam(), "massage" ));
+        addBehandeling(new Behandeling((LocalDate.of(2022, 8, 8)), LocalTime.of( 14, 33, 48), LocalTime.of( 16, 33, 48), getKlant("Thomas van Rens").getNaam(), "massage" ));
+        addBehandeling(new Behandeling((LocalDate.of(2022, 8, 9)), LocalTime.of( 14, 33, 48), LocalTime.of( 16, 33, 48), getKlant("Simone Abel").getNaam(), "massage" ));
+        addBehandeling(new Behandeling((LocalDate.of(2022, 8, 10)), LocalTime.of( 14, 33, 48), LocalTime.of( 16, 33, 48), getKlant("Sanne Vondracek").getNaam(), "massage" ));
+        System.out.println(mijnBehandelingen);
 
     }
     public  void addKlant(Klant klant){
